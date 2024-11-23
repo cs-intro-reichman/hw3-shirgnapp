@@ -140,7 +140,7 @@ public class Algebra {
 		else
 		{
 			int div = div(x1, x2);
-			int mod = times(x2, div);
+			int mod = times(x2, div); 
 			mod = minus(x1, mod);
 			return mod;
 		}
@@ -148,9 +148,17 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int sqrt; 
-		sqrt = times(x, x);
-		return sqrt;
+		for(int i=0; i<x; i++){
+		if (times(i, i) == x) {
+			return i;
+		}
+		if (times(i, i) > x) {
+			i--;
+			return (i);
+		}
+		}
+		return 0;
+			
 	}	  	  
 }
 
