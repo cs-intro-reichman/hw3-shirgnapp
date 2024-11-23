@@ -21,47 +21,136 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
-	}  
 
-	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
 	}
 
-	// Returns x1 - x2
-	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int plus(int x1, int x2) {
+	int i=0;
+	while (i < x1) {
+		x2++;
+		i++;
+	}
+	return x2;
+}
+	
+	public static int minus(int x1, int x2) { // Returns x1 - x2
+		int i = x2;
+		if (x2 < 0) {
+			while (i < 0) {
+				x1--;
+				i++;
+			}
+			
+		}
+		else {
+		while (i > 0) {
+			x1--;
+			i--;
+		}
+	}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i = x1;
+		int counter = 1;
+		if (x1 == 0 || x2 == 0) {
+			return 0;
+		}
+		if (x1 < 0 || x2 < 0) {
+		while (counter > x2) {
+			x1 = minus(x1, i);
+			counter--;
+		}
+	}
+	else {
+		while (counter < x2) {
+			x1 = plus(x1, i);
+			counter++;
+		}
+	}
+		return x1;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int i=x;
+		int counter=1;
+		if (n == 0) {
+			return 1;
+		}
+		if (x < 0) {
+			if (n % 2 == 0) {
+				while (counter < n) {
+					x = times(x, i);
+					counter++;
+			}
+		}
+			else{
+				while (counter < n) {
+					x = times(x, i);
+					counter++;
+			}
+			if (counter == n) {
+				x = times(x, -1);
+			}
+		}
+	}
+		else {
+			while (counter < n) {
+				x = times(x, i);
+				counter++;
+		}
+	}
+		return x;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i=x2;
+		int counter=1;
+		if (x1 == 0 || x2 > x1) {
+			return 0;
+		}
+		else {
+		while (x1>x2) {
+			x1=minus(x1, i);
+			if (x1 >= i) {
+				counter++;
+			}
+			
+		}
+		if ((x2 < 0 && x1 > 0) || (x2 > 0  && x1 < 0)) {
+			counter = times(counter, -1);
+		}
+		if (x1 == x2) {
+			return counter;
+		}
 	}
+	return counter;
+	}
+	
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 > x1) {
+			return (minus(x2, x1));
+		}
+		else
+		{
+			int div = div(x1, x2);
+			int mod = times(x2, div);
+			mod = minus(x1, mod);
+			return mod;
+		}
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int sqrt; 
+		sqrt = times(x, x);
+		return sqrt;
 	}	  	  
 }
+
