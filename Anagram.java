@@ -53,6 +53,9 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		// Replace the following statement with your code
+		if (str.isEmpty()) {
+			return str;
+		}
 		int length = str.length();
 		String OnlyLetters = "";
 		char letter;
@@ -73,21 +76,37 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
+		if (str.isEmpty()) 
+			return str;
 		int length = str.length();
+		if (length == 1 || length ==0) {
+			return str;
+		}
 		str= preProcess(str);
+		if (str.isEmpty()) {
+			return str;
+		}
 		String Newstring = "";
 		double i = Math.random() * length;
 		int random = (int)i;
-		for(int j=0; j< length; j++) {
+		for(int j=0; j < length; j++) {
 			if (j == random) {
 				char letter= str.charAt(j);
 				char[] charArray = str.toCharArray();
+				if(j > 0){
+				charArray[j] = str.charAt(j-1);
+				charArray[j-1] = letter;
+				Newstring = new String(charArray);
+				break;
+				}
+				if (j == 0 && length !=1 || (j + 1) > length) {
 				charArray[j] = str.charAt(j+1);
 				charArray[j+1] = letter;
 				Newstring = new String(charArray);
 				break;
+				}
 			}
 		} 
 		return Newstring;
 	}
-}
+	}
