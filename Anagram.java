@@ -62,6 +62,9 @@ public class Anagram {
 			if (Character.isLetter(letter) == true) {
 				OnlyLetters += letter;
 			}
+			if (letter == ' ') {
+				OnlyLetters += letter;
+			}
 		}
 		OnlyLetters = OnlyLetters.toLowerCase();
 		return OnlyLetters;
@@ -71,6 +74,7 @@ public class Anagram {
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
 		int length = str.length();
+		str= preProcess(str);
 		String Newstring = "";
 		double i = Math.random() * length;
 		int random = (int)i;
