@@ -60,6 +60,9 @@ public class Algebra {
 	}
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
+		if (x1 == 0 || x2 == 0) {
+			return 0;
+		}
 		int PositivNumber1 = x1;
 		int PositivNumber2 = x2;
 		if (x1 < 0) {
@@ -95,29 +98,21 @@ public class Algebra {
 		if (n == 0) {
 			return 1;
 		}
-		if (x < 0) {
-			if (n % 2 == 0) {
-				while (counter < n) {
-					x = times(x, i);
-					counter++;
-			}
+		if (n == 1) {
+			return x;
 		}
-			else{
-				while (counter < n) {
-					x = times(x, i);
-					counter++;
-			}
-			if (counter == n) {
-				x = times(x, -1);
-			}
+		while (counter < n) {
+			x = times(x, i);
+			counter++;
 		}
-	}
-		else {
-			while (counter < n) {
-				x = times(x, i);
-				counter++;
+		if (x < 0 && mod(n, 2) != 0)
+		{
+			return times(x, -1);
 		}
-	}
+		if (n < 0) {
+			return 0;
+		}
+	
 		return x;
 	}
 
@@ -175,6 +170,9 @@ public class Algebra {
 	}
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		if (x == 1) {
+			return 1;
+		}
 		for(int i=0; i<x; i++){
 		if (times(i, i) == x) {
 			return i;
