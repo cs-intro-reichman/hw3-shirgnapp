@@ -25,27 +25,22 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
-
 	}
-
 	public static int plus(int x1, int x2) {
-	int i=0;
-	if (x1 > 0) {
-		while (i < x1) {
-			x2++;
-			i++;
-		}
-	}
-	else
-	{
-		while (i > x1) {
-			x2++;
+	int i = 0;
+	if (x1 < 0 && x2 < 0) {
+		while (i > x2) {
+			x1--;
 			i--;
 		}
 	}
-	return x2;
+	else {
+		while (i < x2) {
+			x1++;
+		}
+	}
+	return x1;
 }
-	
 	public static int minus(int x1, int x2) { // Returns x1 - x2
 		int i = x2;
 		if (x2 < 0) {
@@ -68,16 +63,14 @@ public class Algebra {
 	public static int times(int x1, int x2) {
 		if (x1 > 0 && x2 < 0){
 			int counter=x2;
-			for(int i= 0; i > x1; i--)
-			{
+			for(int i= 0; i > x1; i--) {
 				x2=minus(x2, counter);
 			} 
 			return x2;
 		}
 		if (x1 < 0 && x2 > 0) {
 			int counter=x1;
-			for(int i= 0; i > x2; i--)
-			{
+			for(int i= 0; i > x2; i--) {
 				x1=minus(x1, counter);
 			} 
 			return x1;
@@ -91,12 +84,10 @@ public class Algebra {
 		}
 		if (x1 < 0 && x2 < 0) {
 			int PositivNumber1 = 0, PositivNumber2 = 0;
-			for (int j=0; j > x1; j--)
-			{
+			for (int j=0; j > x1; j--) {
 				PositivNumber1++;
 			} 
-			for (int n=0; n > x2; n--)
-			{
+			for (int n=0; n > x2; n--) {
 				PositivNumber2++;
 			} 
 			int counter = PositivNumber1;
