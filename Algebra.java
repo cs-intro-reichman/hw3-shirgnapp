@@ -17,7 +17,9 @@ public class Algebra {
    		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
-   		System.out.println(div(12,3));   // 12 / 3    
+   		System.out.println(div(12,-3)); 
+		System.out.println(div(-12,-3)); 
+		System.out.println(div(-12,3));   // 12 / 3    
    		System.out.println(div(5,5));    // 5 / 5  
    		System.out.println(div(25,7));   // 25 / 7
    		System.out.println(mod(25,7));   // 25 % 7
@@ -138,18 +140,18 @@ public class Algebra {
 				PositivNumber2++;
 			}	
 		}
-		if (x2 > x1) {
+		if (PositivNumber2 > PositivNumber1) {
 			return 0;
 		}
 		int counter = 1;
-		while (x1 > x2) {
-			x1=minus(x1, x2);
-			if (x1 >= x2) {
+		while (PositivNumber1 > PositivNumber2) {
+			PositivNumber1=minus(PositivNumber1, PositivNumber2);
+			if (PositivNumber1 >= PositivNumber2) {
 				counter ++;
 			}
 		}
 		if (x1 > 0 && x2 < 0 || x1 < 0 && x2 > 0) {
-			int NegativeCounter = -1;
+			int NegativeCounter = 0;
 			for(int j=0; j<counter; j++){
 				NegativeCounter--;
 			}
