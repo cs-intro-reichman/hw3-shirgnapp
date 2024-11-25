@@ -95,6 +95,9 @@ public class Algebra {
 	public static int pow(int x, int n) {
 		int i=x;
 		int counter=1;
+		if (n < 0) {
+			return 0;
+		}
 		if (n == 0) {
 			return 1;
 		}
@@ -105,14 +108,14 @@ public class Algebra {
 			x = times(x, i);
 			counter++;
 		}
-		if (x < 0 && mod(n, 2) != 0)
+		if (x < 0 )
 		{
-			return times(x, -1);
+			counter = 0;
+			while ( counter < n) {
+				times(x, -1);
+				counter++;
+			}
 		}
-		if (n < 0) {
-			return 0;
-		}
-	
 		return x;
 	}
 
