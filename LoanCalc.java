@@ -28,13 +28,12 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		for(int i=0; i<n; i++){
-			loan -= payment;
-			loan = loan * (1 + rate / 100);
+			for (int i = 0; i < n; i++) {
+				loan -= payment;
+				loan = loan * (1 + rate / 100); 
+			}
+			return loan; 
 		}
-		return loan;
-	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
 	// that will bring the ending balance of a loan close to 0.
@@ -42,13 +41,13 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		double payment = loan / n;
-		double balance = endBalance(loan, rate, n, payment);
+		double payment = loan / n; 
+		double balance = endBalance(loan, rate, n, payment); 
 		iterationCounter = 0;
 		while (balance > epsilon) {
 			iterationCounter++;
 			payment += epsilon;
-			balance = endBalance(loan, rate, n, payment);
+			balance = endBalance(loan, rate, n, payment); 
 			}
 			return payment;
 		}
@@ -57,24 +56,25 @@ public class LoanCalc {
 	// Given: the sum of the loan, the periodical interest rate (as a percentage),
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-		double payment = loan / 2;
-		double lower = 0, higher = loan;
-		iterationCounter = 0;
-		double balance = endBalance(loan, rate, n, payment);
-		while (balance > epsilon || balance < -epsilon){
-			iterationCounter++;
-			if (balance > 0) {
-				lower = payment;
+    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {   
+			double lower = loan / n;
+			double higher = loan * (1 + rate / 100);
+			double payment = (lower + higher) / 2; 
+			double balance = endBalance(loan, rate, n, payment);
+			iterationCounter = 0;
+			while (Math.abs(balance) > epsilon) { 
+				iterationCounter++;
+				if (balance > 0) {
+					lower = payment;
+				} else {
+					higher = payment;
+				}
 				payment = (lower + higher) / 2;
 				balance = endBalance(loan, rate, n, payment);
 			}
-			else {
-				higher = payment;
-				payment = (lower + higher) / 2;
-				balance = endBalance(loan, rate, n, payment);
-			}
-			}
-	return payment;
+			return payment;
+		}
+		
     }
-}
+	
+
